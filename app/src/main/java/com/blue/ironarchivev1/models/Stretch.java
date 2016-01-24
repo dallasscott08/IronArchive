@@ -8,6 +8,7 @@ public class Stretch extends WorkoutItem {
 	String name;
 	long time;
 	int hasDelay, id, routineId, set;
+	boolean islinked;
 	
 	public Stretch() {
 		this.time = 0;
