@@ -1,0 +1,20 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ExpandableListView
+        android:id="@+id/expListView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.53" />
+
+    <Button
+        android:id="@+id/addItem_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/addItem_button"
+        android:textColor="#FFFFFF"
+        android:background="#33b5e5" />
+
+</LinearLayout>

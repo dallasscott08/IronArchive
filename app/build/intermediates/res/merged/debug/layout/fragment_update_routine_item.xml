@@ -1,0 +1,76 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+        	
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal">
+	        
+	        <TextView
+	        	android:layout_width="wrap_content"
+	        	android:layout_height="wrap_content"
+	        	android:text="@string/wname"
+	        	android:textColor="#424242"
+		        android:layout_marginLeft="10dp"
+		        android:layout_marginStart="10dp" />
+	        <TextView        	
+	        	android:id="@+id/rcurrentname"
+	        	android:layout_width="wrap_content"
+	        	android:layout_height="wrap_content"
+	        	android:paddingLeft="7dp"
+	        	android:paddingRight="7dp"
+	        	android:textColor="#33b5e5" />
+	        <EditText
+	        	android:id="@+id/reditname"
+	        	android:layout_width="match_parent"
+	        	android:layout_height="wrap_content"
+	        	android:ems="10"
+	        	android:inputType="textCapSentences" 
+	        	android:imeOptions="actionDone"
+	        	android:textColor="#424242"
+		        android:layout_marginRight="10dp"
+		        android:layout_marginEnd="10dp"/>
+	        
+	    </LinearLayout>
+	    
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal">
+	        
+	    	<Button
+	        	android:id="@+id/button_commit_routine_update"
+	        	android:layout_width="match_parent"
+	        	android:layout_height="wrap_content"
+	        	android:text="@string/update_button"
+	        	android:textColor="#FFFFFF"
+	        	android:background="#33b5e5"
+	        	android:layout_weight="1"/>
+	    
+	    	<View android:layout_height="match_parent"
+			    android:layout_width="1dp"
+			    android:background="#FFFFFF"
+			    android:gravity="center"/>
+	    	
+	    	<Button
+	        	android:id="@+id/button_commit_routine_delete"
+	        	android:layout_width="match_parent"
+	        	android:layout_height="wrap_content"
+	        	android:text="@string/delete_button"
+	        	android:textColor="#FFFFFF"
+	        	android:background="#33b5e5"
+	        	android:layout_weight="1"/>
+	    	
+	    </LinearLayout>
+	    
+    </LinearLayout>
+    
+</ScrollView>

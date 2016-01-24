@@ -1,0 +1,335 @@
+[
+    {
+        "outputFile": "/home/dallas/StudioProjects/Iron Archive/app/build/intermediates/res/merged/debug/values-v11/values-v11.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endLine": 8,
+                    "endColumn": 12,
+                    "endOffset": 503
+                },
+                "from": {
+                    "file": "/home/dallas/StudioProjects/Iron Archive/app/src/main/res/values-v11/styles.xml",
+                    "position": {
+                        "startLine": 9,
+                        "startColumn": 4,
+                        "startOffset": 224,
+                        "endLine": 15,
+                        "endColumn": 12,
+                        "endOffset": 678
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 9,
+                    "startColumn": 4,
+                    "startOffset": 508,
+                    "endLine": 16,
+                    "endColumn": 12,
+                    "endOffset": 1094
+                },
+                "from": {
+                    "file": "/home/dallas/StudioProjects/Iron Archive/app/src/main/res/values-v11/styles.xml",
+                    "position": {
+                        "startLine": 18,
+                        "startColumn": 4,
+                        "startOffset": 725,
+                        "endLine": 25,
+                        "endColumn": 12,
+                        "endOffset": 1311
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 17,
+                    "startColumn": 4,
+                    "startOffset": 1099,
+                    "endLine": 19,
+                    "endColumn": 11,
+                    "endOffset": 1268
+                },
+                "from": {
+                    "file": "/home/dallas/StudioProjects/Iron Archive/app/src/main/res/values-v11/styles.xml",
+                    "position": {
+                        "startLine": 36,
+                        "startColumn": 1,
+                        "startOffset": 1795,
+                        "endLine": 38,
+                        "endColumn": 11,
+                        "endOffset": 1964
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 20,
+                    "startColumn": 4,
+                    "startOffset": 1273,
+                    "endLine": 23,
+                    "endColumn": 9,
+                    "endOffset": 1493
+                },
+                "from": {
+                    "file": "/home/dallas/StudioProjects/Iron Archive/app/src/main/res/values-v11/styles.xml",
+                    "position": {
+                        "startLine": 48,
+                        "startColumn": 1,
+                        "startOffset": 2274,
+                        "endLine": 51,
+                        "endColumn": 9,
+                        "endOffset": 2494
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 24,
+                    "startColumn": 4,
+                    "startOffset": 1498,
+                    "endLine": 27,
+                    "endColumn": 9,
+                    "endOffset": 1763
+                },
+                "from": {
+                    "file": "/home/dallas/StudioProjects/Iron Archive/app/src/main/res/values-v11/styles.xml",
+                    "position": {
+                        "startLine": 27,
+                        "startColumn": 4,
+                        "startOffset": 1322,
+                        "endLine": 30,
+                        "endColumn": 9,
+                        "endOffset": 1588
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 28,
+                    "startColumn": 4,
+                    "startOffset": 1768,
+                    "endLine": 30,
+                    "endColumn": 12,
+                    "endOffset": 1961
+                },
+                "from": {
+                    "file": "/home/dallas/StudioProjects/Iron Archive/app/src/main/res/values-v11/styles.xml",
+                    "position": {
+                        "startLine": 32,
+                        "startColumn": 4,
+                        "startOffset": 1594,
+                        "endLine": 34,
+                        "endColumn": 12,
+                        "endOffset": 1787
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 31,
+                    "startColumn": 4,
+                    "startOffset": 1966,
+                    "endLine": 33,
+                    "endColumn": 11,
+                    "endOffset": 2120
+                },
+                "from": {
+                    "file": "/home/dallas/StudioProjects/Iron Archive/app/src/main/res/values-v11/styles.xml",
+                    "position": {
+                        "startLine": 40,
+                        "startColumn": 1,
+                        "startOffset": 1970,
+                        "endLine": 42,
+                        "endColumn": 11,
+                        "endOffset": 2124
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 34,
+                    "startColumn": 4,
+                    "startOffset": 2125,
+                    "endLine": 49,
+                    "endColumn": 12,
+                    "endOffset": 2962
+                },
+                "from": {
+                    "file": "/home/dallas/StudioProjects/Iron Archive/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values-v11/values.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 4,
+                        "startOffset": 283,
+                        "endLine": 21,
+                        "endColumn": 12,
+                        "endOffset": 1120
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 50,
+                    "startColumn": 4,
+                    "startOffset": 2967,
+                    "endLine": 61,
+                    "endColumn": 12,
+                    "endOffset": 3774
+                },
+                "from": {
+                    "file": "/home/dallas/StudioProjects/Iron Archive/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values-v11/values.xml",
+                    "position": {
+                        "startLine": 23,
+                        "startColumn": 4,
+                        "startOffset": 1126,
+                        "endLine": 34,
+                        "endColumn": 12,
+                        "endOffset": 1933
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 62,
+                    "startColumn": 4,
+                    "startOffset": 3779,
+                    "endLine": 73,
+                    "endColumn": 12,
+                    "endOffset": 4598
+                },
+                "from": {
+                    "file": "/home/dallas/StudioProjects/Iron Archive/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values-v11/values.xml",
+                    "position": {
+                        "startLine": 36,
+                        "startColumn": 4,
+                        "startOffset": 1939,
+                        "endLine": 47,
+                        "endColumn": 12,
+                        "endOffset": 2758
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 74,
+                    "startColumn": 4,
+                    "startOffset": 4603,
+                    "endLine": 89,
+                    "endColumn": 12,
+                    "endOffset": 5452
+                },
+                "from": {
+                    "file": "/home/dallas/StudioProjects/Iron Archive/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values-v11/values.xml",
+                    "position": {
+                        "startLine": 49,
+                        "startColumn": 4,
+                        "startOffset": 2764,
+                        "endLine": 64,
+                        "endColumn": 12,
+                        "endOffset": 3613
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 90,
+                    "startColumn": 4,
+                    "startOffset": 5457,
+                    "endColumn": 112,
+                    "endOffset": 5565
+                },
+                "from": {
+                    "file": "/home/dallas/StudioProjects/Iron Archive/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values-v11/values.xml",
+                    "position": {
+                        "startLine": 68,
+                        "startColumn": 4,
+                        "startOffset": 3845,
+                        "endColumn": 119,
+                        "endOffset": 3960
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 91,
+                    "startColumn": 4,
+                    "startOffset": 5570,
+                    "endColumn": 94,
+                    "endOffset": 5660
+                },
+                "from": {
+                    "file": "/home/dallas/StudioProjects/Iron Archive/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values-v11/values.xml",
+                    "position": {
+                        "startLine": 70,
+                        "startColumn": 4,
+                        "startOffset": 3966,
+                        "endColumn": 101,
+                        "endOffset": 4063
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 92,
+                    "startColumn": 4,
+                    "startOffset": 5665,
+                    "endColumn": 116,
+                    "endOffset": 5777
+                },
+                "from": {
+                    "file": "/home/dallas/StudioProjects/Iron Archive/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values-v11/values.xml",
+                    "position": {
+                        "startLine": 72,
+                        "startColumn": 4,
+                        "startOffset": 4069,
+                        "endColumn": 123,
+                        "endOffset": 4188
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 93,
+                    "startColumn": 4,
+                    "startOffset": 5782,
+                    "endColumn": 124,
+                    "endOffset": 5902
+                },
+                "from": {
+                    "file": "/home/dallas/StudioProjects/Iron Archive/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values-v11/values.xml",
+                    "position": {
+                        "startLine": 74,
+                        "startColumn": 4,
+                        "startOffset": 4194,
+                        "endColumn": 131,
+                        "endOffset": 4321
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 94,
+                    "startColumn": 4,
+                    "startOffset": 5907,
+                    "endLine": 96,
+                    "endColumn": 9,
+                    "endOffset": 6050
+                },
+                "from": {
+                    "file": "/home/dallas/StudioProjects/Iron Archive/app/src/main/res/values-v11/styles.xml",
+                    "position": {
+                        "startLine": 44,
+                        "startColumn": 1,
+                        "startOffset": 2127,
+                        "endLine": 46,
+                        "endColumn": 9,
+                        "endOffset": 2270
+                    }
+                }
+            }
+        ]
+    }
+]

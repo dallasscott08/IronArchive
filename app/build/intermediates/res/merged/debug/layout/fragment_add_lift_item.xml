@@ -1,0 +1,198 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+    
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal" >
+	        
+	        <TextView
+	        	android:layout_width="wrap_content"
+	        	android:layout_height="wrap_content"
+	        	android:text="@string/wname" 
+	        	android:textColor="#424242"
+		        android:layout_marginLeft="10dp"
+		        android:layout_marginStart="10dp"/>
+	        <EditText
+	        	android:id="@+id/leditname"
+	        	android:layout_width="match_parent"
+	        	android:layout_height="wrap_content"
+	        	android:ems="10"
+	        	android:inputType="textCapWords"
+	        	android:imeOptions="actionDone"
+	        	android:textColor="#424242"
+		        android:layout_marginRight="10dp"
+		        android:layout_marginEnd="10dp"/>
+	        
+	    </LinearLayout>   
+	    
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal" >
+	        
+	        <TextView
+	        	android:id="@+id/lweightHeading"
+	        	android:layout_width="wrap_content"
+	        	android:layout_height="wrap_content" 
+	        	android:textColor="#424242"
+		        android:layout_marginLeft="10dp"
+		        android:layout_marginStart="10dp"/>
+	        <EditText
+	        	android:id="@+id/leditweight"
+	        	android:layout_width="match_parent"
+	        	android:layout_height="wrap_content"
+	        	android:ems="10"
+	        	android:inputType="numberDecimal" 
+	        	android:maxLength="4"
+	        	android:imeOptions="actionDone"
+	        	android:textColor="#424242"
+		        android:layout_marginRight="10dp"
+		        android:layout_marginEnd="10dp"/>
+	        
+	    </LinearLayout>
+	      
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal">
+	        
+	        <TextView
+	        	android:layout_width="wrap_content"
+	        	android:layout_height="wrap_content"
+	        	android:text="@string/wreps" 
+	        	android:textColor="#424242"
+		        android:layout_marginLeft="10dp"
+		        android:layout_marginStart="10dp"/>
+	        <EditText
+	        	android:id="@+id/leditreps"
+	        	android:layout_width="match_parent"
+	        	android:layout_height="wrap_content"
+	        	android:ems="10"
+	        	android:digits="0123456789.,"
+	        	android:inputType="number"
+	        	android:maxLength="5" 
+	        	android:imeOptions="actionDone"
+	        	android:textColor="#424242"
+		        android:layout_marginRight="10dp"
+		        android:layout_marginEnd="10dp"/>
+	        
+	    </LinearLayout>    
+	
+		<LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal" >
+	
+	        <TextView
+	        	android:layout_width="wrap_content"
+	        	android:layout_height="wrap_content"
+	        	android:text="@string/wtime" 
+	        	android:textColor="#424242"
+		        android:layout_marginLeft="10dp"
+		        android:layout_marginStart="10dp"/>
+	        <EditText
+	        	android:id="@+id/ledittime"
+	        	android:layout_width="match_parent"
+	        	android:layout_height="wrap_content"
+	        	android:ems="10"
+	        	android:inputType="number"
+	        	android:maxLength="4"
+	        	android:imeOptions="actionDone"
+	        	android:textColor="#424242"
+		        android:layout_marginRight="10dp"
+		        android:layout_marginEnd="10dp"/>
+	        
+	    </LinearLayout>
+	   
+		<LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal">
+	        
+	        <TextView
+	        	android:layout_width="wrap_content"
+	        	android:layout_height="wrap_content"
+	        	android:text="@string/wresttime" 
+	        	android:textColor="#424242"
+		        android:layout_marginLeft="10dp"
+		        android:layout_marginStart="10dp"/>
+	        <EditText
+	        	android:id="@+id/leditresttime"
+	        	android:layout_width="match_parent"
+	        	android:layout_height="wrap_content"
+	        	android:ems="10"
+	        	android:inputType="number"
+	        	android:maxLength="4" 
+	        	android:imeOptions="actionDone"
+	        	android:textColor="#424242"
+		        android:layout_marginRight="10dp"
+		        android:layout_marginEnd="10dp"/>
+	        
+	    </LinearLayout>
+	
+		<LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal">
+	        
+	        <TextView
+	        	android:layout_width="wrap_content"
+	        	android:layout_height="wrap_content"
+	        	android:text="@string/wsets" 
+	        	android:textColor="#424242"
+		        android:layout_marginLeft="10dp"
+		        android:layout_marginStart="10dp"/>
+	        <EditText
+	        	android:id="@+id/leditset"
+	        	android:layout_width="match_parent"
+	        	android:layout_height="wrap_content"
+	        	android:ems="10"
+	        	android:inputType="number" 
+	        	android:maxLength="3"
+	        	android:imeOptions="actionDone"
+	        	android:textColor="#424242"
+		        android:layout_marginRight="10dp"
+		        android:layout_marginEnd="10dp"/>
+	        
+	    </LinearLayout>
+		
+		<LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal">
+	        
+			<CheckBox
+			    android:id="@+id/ldelaytime"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:text="@string/qdelaytime" 
+			    android:textColor="#424242"/>		
+			<CheckBox
+			    android:id="@+id/lolympicbar"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:text="@string/lolympicbar" 
+			    android:textColor="#424242"/>
+			
+		</LinearLayout>			
+	
+		<Button
+	        android:id="@+id/button_commit_lift"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/commit_button"
+	        android:textColor="#FFFFFF"
+	        android:background="#33b5e5"/>
+		
+	</LinearLayout>
+	
+</ScrollView>

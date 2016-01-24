@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "/home/dallas/StudioProjects/Iron Archive/app/build/intermediates/res/merged/debug/drawable-land-hdpi-v4/ic_launcher.png",
+        "source": "/home/dallas/StudioProjects/Iron Archive/app/src/main/res/drawable-land-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/home/dallas/StudioProjects/Iron Archive/app/build/intermediates/res/merged/debug/drawable-land-hdpi-v4/temp2.png",
+        "source": "/home/dallas/StudioProjects/Iron Archive/app/src/main/res/drawable-land-hdpi/temp2.png"
+    },
+    {
+        "merged": "/home/dallas/StudioProjects/Iron Archive/app/build/intermediates/res/merged/debug/drawable-land-hdpi-v4/ia_launcher.png",
+        "source": "/home/dallas/StudioProjects/Iron Archive/app/src/main/res/drawable-land-hdpi/ia_launcher.png"
+    },
+    {
+        "merged": "/home/dallas/StudioProjects/Iron Archive/app/build/intermediates/res/merged/debug/drawable-land-hdpi-v4/ic_help_white.png",
+        "source": "/home/dallas/StudioProjects/Iron Archive/app/src/main/res/drawable-land-hdpi/ic_help_white.png"
+    },
+    {
+        "merged": "/home/dallas/StudioProjects/Iron Archive/app/build/intermediates/res/merged/debug/drawable-land-hdpi-v4/ring.xml",
+        "source": "/home/dallas/StudioProjects/Iron Archive/app/src/main/res/drawable-land-hdpi/ring.xml"
+    },
+    {
+        "merged": "/home/dallas/StudioProjects/Iron Archive/app/build/intermediates/res/merged/debug/drawable-land-hdpi-v4/temp.png",
+        "source": "/home/dallas/StudioProjects/Iron Archive/app/src/main/res/drawable-land-hdpi/temp.png"
+    }
+]

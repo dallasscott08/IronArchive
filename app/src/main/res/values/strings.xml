@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Iron Archive</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_help">Help</string>
+    <string name="addItem_button">Add Item</string>
+    <string name="addRoutine_button">Add Routine</string>
+    <string name="background_message">Iron Archive</string>
+    <string name="background_sub_message">(Press to Continue)</string>
+    <string name="commit_button">Commit Item</string>
+    <string name="delete_button">Delete Item</string>
+    
+    <!-- Help Menu Messages -->
+    <string name="help_title_list_item">List Items:</string>
+    <string name="help_long_press">Long press an item to update</string>
+    <string name="help_title_expanded_item">Item Utilities:</string>
+    <string name="help_item_time">Press \"Time\" on an expanded item to start timer \n(Note: This also works for \"Rest Time\")</string>
+    <string name="help_weight_press">Press \"Weight\" to display needed number of plates</string>
+    <string name="help_title_add_item">Adding Items:</string>
+    <string name="help_add_set">\"Set\" determines number of items created</string>
+    <string name="help_add_toggle_delay">Toggle \"10 sec delay?\" to add 10 second delay before countdown starts</string>
+    <string name="help_add_toggle_olympic_bar">Toggle \"Olympic Bar?\" to factor in olympic bar on lift calculation</string>
+    
+    <string name="open_routine_button">Open Routine</string>
+    <string name="select_routine_button">Select Routine</string>
+    <!-- This is going to be one of those list icons with the dashes -->
+    <string name="settings_button">Settings</string>
+    <!-- This is going to be just one of those gear icons -->
+    <string name="simple_ime">Simple IME</string>
+    <string name="subtype_en_US">English (US)</string>
+    <string name="title_activity_add_item">AddItem</string>
+    <string name="title_activity_dbhelper">DBHelper</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="title_section1">Stretches</string>
+    <string name="title_section2">Mobility</string>
+    <string name="title_section3">Warm-up</string>
+    <string name="title_section4">Lifts</string>
+    <string name="update_button">Update Item</string>
+    <string name="wname">Name</string>
+    <string name="wreps">Repititions</string>
+    <string name="wresttime">Rest Time (sec)</string>
+    <string name="wsets">Sets</string>
+    <string name="wtime">Time (sec)</string>
+    <string name="wweight">Weight (lbs)</string>
+    <string name="qdelaytime">10 sec delay?</string>
+    <string name="lolympicbar">Olympic Bar?</string>
+    <string name="title_activity_tutorial">TutorialActivity</string>
+
+</resources>

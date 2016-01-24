@@ -1,0 +1,105 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml:2:1-58:12
+	package
+		ADDED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml:3:5-37
+		INJECTED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml
+		INJECTED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml
+	android:versionName
+		ADDED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml:5:5-30
+		INJECTED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml
+		INJECTED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml
+	android:versionCode
+		ADDED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml:4:5-28
+		INJECTED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml
+		INJECTED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml:2:11-69
+uses-permission#android.permission.VIBRATE
+ADDED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml:7:5-9:36
+	android:required
+		ADDED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml:9:9-33
+	android:name
+		ADDED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml:8:9-50
+uses-sdk
+ADDED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml:11:5-13:41
+MERGED from [com.android.support:appcompat-v7:19.1.0] /home/dallas/StudioProjects/Iron Archive/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/AndroidManifest.xml:18:5-42
+	android:targetSdkVersion
+		ADDED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml:13:9-38
+		INJECTED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml
+		INJECTED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		ADDED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml:12:9-35
+		INJECTED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml
+		INJECTED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml
+application
+ADDED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml:15:5-56:19
+MERGED from [com.android.support:appcompat-v7:19.1.0] /home/dallas/StudioProjects/Iron Archive/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/AndroidManifest.xml:19:5-20
+	android:label
+		ADDED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml:18:9-41
+	android:allowBackup
+		ADDED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml:16:9-35
+	android:icon
+		ADDED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml:17:9-45
+	android:theme
+		ADDED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml:19:9-40
+activity#com.blue.ironarchivev1.RoutineFragmentContainer
+ADDED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml:20:9-24:20
+	android:label
+		ADDED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml:22:13-45
+	android:theme
+		ADDED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml:23:13-52
+	android:name
+		ADDED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml:21:13-53
+activity#com.blue.ironarchivev1.RoutinesListActivity
+ADDED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml:25:9-29:20
+	android:label
+		ADDED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml:27:13-45
+	android:theme
+		ADDED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml:28:13-52
+	android:name
+		ADDED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml:26:13-49
+activity#com.blue.ironarchivev1.TimerActivity
+ADDED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml:30:9-34:20
+	android:label
+		ADDED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml:32:13-45
+	android:theme
+		ADDED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml:33:13-52
+	android:name
+		ADDED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml:31:13-42
+activity#com.blue.ironarchivev1.FrontPageActivity
+ADDED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml:35:9-45:20
+	android:label
+		ADDED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml:38:13-45
+	android:configChanges
+		ADDED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml:37:13-74
+	android:theme
+		ADDED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml:39:13-51
+	android:name
+		ADDED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml:36:13-46
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml:40:13-44:29
+action#android.intent.action.MAIN
+ADDED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml:41:17-69
+	android:name
+		ADDED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml:41:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml:43:17-77
+	android:name
+		ADDED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml:43:27-74
+activity#com.blue.ironarchivev1.SettingsActivity
+ADDED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml:46:9-50:20
+	android:label
+		ADDED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml:48:13-60
+	android:theme
+		ADDED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml:49:13-52
+	android:name
+		ADDED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml:47:13-45
+activity#com.blue.ironarchivev1.TutorialActivity
+ADDED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml:51:9-55:20
+	android:label
+		ADDED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml:53:13-60
+	android:theme
+		ADDED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml:54:13-52
+	android:name
+		ADDED from /home/dallas/StudioProjects/Iron Archive/app/src/main/AndroidManifest.xml:52:13-45

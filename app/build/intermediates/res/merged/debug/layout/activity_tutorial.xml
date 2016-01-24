@@ -1,0 +1,115 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <TextView 
+        android:layout_width="wrap_content"
+       	android:layout_height="wrap_content"
+       	android:text="@string/help_title_list_item" 
+       	android:textColor="#33b5e5"
+       	android:textSize="20sp"
+       	android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"/>
+    
+	    <TextView 
+	        android:layout_width="wrap_content"
+	       	android:layout_height="wrap_content"
+	       	android:text="@string/help_long_press" 
+	       	android:textColor="#424242"
+	       	android:textSize="15sp"
+       		android:layout_marginTop="10dp"
+	        android:layout_marginLeft="20dp"
+	        android:layout_marginStart="20dp"/>
+	    
+    <TextView 
+        android:layout_width="wrap_content"
+       	android:layout_height="wrap_content"
+       	android:text="@string/help_title_expanded_item" 
+       	android:textColor="#33b5e5"
+       	android:textSize="20sp"
+       	android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"/>
+    
+    	<TextView 
+	        android:layout_width="wrap_content"
+	       	android:layout_height="wrap_content"
+	       	android:text="@string/help_item_time" 
+	       	android:textColor="#424242"
+	       	android:textSize="15sp"
+       		android:layout_marginTop="10dp"
+	        android:layout_marginLeft="20dp"
+	        android:layout_marginStart="20dp"/>
+    	<TextView 
+	        android:layout_width="wrap_content"
+	       	android:layout_height="wrap_content"
+	       	android:text="@string/help_weight_press" 
+	       	android:textColor="#424242"
+	       	android:textSize="15sp"
+       		android:layout_marginTop="10dp"
+	        android:layout_marginLeft="20dp"
+	        android:layout_marginStart="20dp"/>
+    	
+    <TextView 
+        android:layout_width="wrap_content"
+       	android:layout_height="wrap_content"
+       	android:text="@string/help_title_add_item" 
+       	android:textColor="#33b5e5"
+       	android:textSize="20sp"
+       	android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"/>
+    
+    	<TextView 
+	        android:layout_width="wrap_content"
+	       	android:layout_height="wrap_content"
+	       	android:text="@string/help_add_set" 
+	       	android:textColor="#424242"
+	       	android:textSize="15sp"
+       		android:layout_marginTop="10dp"
+	        android:layout_marginLeft="20dp"
+	        android:layout_marginStart="20dp"/>
+    	<TextView 
+	        android:layout_width="wrap_content"
+	       	android:layout_height="wrap_content"
+	       	android:text="@string/help_add_toggle_delay" 
+	       	android:textColor="#424242"
+	       	android:textSize="15sp"
+       		android:layout_marginTop="10dp"
+	        android:layout_marginLeft="20dp"
+	        android:layout_marginStart="20dp"/>
+    	<TextView 
+	        android:layout_width="wrap_content"
+	       	android:layout_height="wrap_content"
+	       	android:text="@string/help_add_toggle_olympic_bar" 
+	       	android:textColor="#424242"
+	       	android:textSize="15sp"
+       		android:layout_marginTop="10dp"
+	        android:layout_marginLeft="20dp"
+	        android:layout_marginStart="20dp"/>
+    
+    <!--<ViewFlipper
+        android:id="@+id/tutorialViewFlipper"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center" >
+        
+        <ImageView
+            android:layout_width="fill_parent"
+        	android:layout_height="fill_parent"
+        	android:src="@drawable/expanded_item_help"/>
+        <ImageView
+            android:layout_width="fill_parent"
+        	android:layout_height="fill_parent"
+        	android:src="@drawable/list_item_help"/>
+        <ImageView
+            android:layout_width="fill_parent"
+        	android:layout_height="fill_parent"
+        	android:src="@drawable/add_lift_item_help"/>
+        
+    </ViewFlipper>-->
+
+</LinearLayout>

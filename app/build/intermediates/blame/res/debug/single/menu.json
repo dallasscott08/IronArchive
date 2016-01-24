@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "/home/dallas/StudioProjects/Iron Archive/app/build/intermediates/res/merged/debug/menu/tutorial.xml",
+        "source": "/home/dallas/StudioProjects/Iron Archive/app/src/main/res/menu/tutorial.xml"
+    },
+    {
+        "merged": "/home/dallas/StudioProjects/Iron Archive/app/build/intermediates/res/merged/debug/menu/items_list.xml",
+        "source": "/home/dallas/StudioProjects/Iron Archive/app/src/main/res/menu/items_list.xml"
+    },
+    {
+        "merged": "/home/dallas/StudioProjects/Iron Archive/app/build/intermediates/res/merged/debug/menu/main.xml",
+        "source": "/home/dallas/StudioProjects/Iron Archive/app/src/main/res/menu/main.xml"
+    }
+]

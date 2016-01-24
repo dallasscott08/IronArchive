@@ -1,0 +1,70 @@
+[
+    {
+        "merged": "/home/dallas/StudioProjects/Iron Archive/app/build/intermediates/res/merged/debug/layout-land/timer.xml",
+        "source": "/home/dallas/StudioProjects/Iron Archive/app/src/main/res/layout-land/timer.xml"
+    },
+    {
+        "merged": "/home/dallas/StudioProjects/Iron Archive/app/build/intermediates/res/merged/debug/layout-land/item_routine_name.xml",
+        "source": "/home/dallas/StudioProjects/Iron Archive/app/src/main/res/layout-land/item_routine_name.xml"
+    },
+    {
+        "merged": "/home/dallas/StudioProjects/Iron Archive/app/build/intermediates/res/merged/debug/layout-land/fragment_add_lift_item.xml",
+        "source": "/home/dallas/StudioProjects/Iron Archive/app/src/main/res/layout-land/fragment_add_lift_item.xml"
+    },
+    {
+        "merged": "/home/dallas/StudioProjects/Iron Archive/app/build/intermediates/res/merged/debug/layout-land/fragment_update_stretch_item.xml",
+        "source": "/home/dallas/StudioProjects/Iron Archive/app/src/main/res/layout-land/fragment_update_stretch_item.xml"
+    },
+    {
+        "merged": "/home/dallas/StudioProjects/Iron Archive/app/build/intermediates/res/merged/debug/layout-land/fragment_workout_item_list.xml",
+        "source": "/home/dallas/StudioProjects/Iron Archive/app/src/main/res/layout-land/fragment_workout_item_list.xml"
+    },
+    {
+        "merged": "/home/dallas/StudioProjects/Iron Archive/app/build/intermediates/res/merged/debug/layout-land/workout_list_spinner.xml",
+        "source": "/home/dallas/StudioProjects/Iron Archive/app/src/main/res/layout-land/workout_list_spinner.xml"
+    },
+    {
+        "merged": "/home/dallas/StudioProjects/Iron Archive/app/build/intermediates/res/merged/debug/layout-land/fragment_update_routine_item.xml",
+        "source": "/home/dallas/StudioProjects/Iron Archive/app/src/main/res/layout-land/fragment_update_routine_item.xml"
+    },
+    {
+        "merged": "/home/dallas/StudioProjects/Iron Archive/app/build/intermediates/res/merged/debug/layout-land/fragment_update_lift_item.xml",
+        "source": "/home/dallas/StudioProjects/Iron Archive/app/src/main/res/layout-land/fragment_update_lift_item.xml"
+    },
+    {
+        "merged": "/home/dallas/StudioProjects/Iron Archive/app/build/intermediates/res/merged/debug/layout-land/activity_fragment_container.xml",
+        "source": "/home/dallas/StudioProjects/Iron Archive/app/src/main/res/layout-land/activity_fragment_container.xml"
+    },
+    {
+        "merged": "/home/dallas/StudioProjects/Iron Archive/app/build/intermediates/res/merged/debug/layout-land/fragment_add_stretch_item.xml",
+        "source": "/home/dallas/StudioProjects/Iron Archive/app/src/main/res/layout-land/fragment_add_stretch_item.xml"
+    },
+    {
+        "merged": "/home/dallas/StudioProjects/Iron Archive/app/build/intermediates/res/merged/debug/layout-land/fragment_add_routine_item.xml",
+        "source": "/home/dallas/StudioProjects/Iron Archive/app/src/main/res/layout-land/fragment_add_routine_item.xml"
+    },
+    {
+        "merged": "/home/dallas/StudioProjects/Iron Archive/app/build/intermediates/res/merged/debug/layout-land/fragment_update_mob_or_wa_item.xml",
+        "source": "/home/dallas/StudioProjects/Iron Archive/app/src/main/res/layout-land/fragment_update_mob_or_wa_item.xml"
+    },
+    {
+        "merged": "/home/dallas/StudioProjects/Iron Archive/app/build/intermediates/res/merged/debug/layout-land/item_expanded_group.xml",
+        "source": "/home/dallas/StudioProjects/Iron Archive/app/src/main/res/layout-land/item_expanded_group.xml"
+    },
+    {
+        "merged": "/home/dallas/StudioProjects/Iron Archive/app/build/intermediates/res/merged/debug/layout-land/activity_routine_list.xml",
+        "source": "/home/dallas/StudioProjects/Iron Archive/app/src/main/res/layout-land/activity_routine_list.xml"
+    },
+    {
+        "merged": "/home/dallas/StudioProjects/Iron Archive/app/build/intermediates/res/merged/debug/layout-land/activity_front_page.xml",
+        "source": "/home/dallas/StudioProjects/Iron Archive/app/src/main/res/layout-land/activity_front_page.xml"
+    },
+    {
+        "merged": "/home/dallas/StudioProjects/Iron Archive/app/build/intermediates/res/merged/debug/layout-land/fragment_add_mob_or_wa_item.xml",
+        "source": "/home/dallas/StudioProjects/Iron Archive/app/src/main/res/layout-land/fragment_add_mob_or_wa_item.xml"
+    },
+    {
+        "merged": "/home/dallas/StudioProjects/Iron Archive/app/build/intermediates/res/merged/debug/layout-land/item_list_group_header.xml",
+        "source": "/home/dallas/StudioProjects/Iron Archive/app/src/main/res/layout-land/item_list_group_header.xml"
+    }
+]
