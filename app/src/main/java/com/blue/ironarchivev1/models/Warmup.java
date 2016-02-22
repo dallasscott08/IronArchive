@@ -5,9 +5,9 @@ import java.util.List;
 
 public class Warmup extends WorkoutItem {
 
-	String name;
-	int hasDelay, id, reps, routineId, set;
-	long time;
+	private String name;
+	private int hasDelay, id, reps, routineId, set;
+	private long time;
 	
 	public Warmup() {
 		this.reps = 0;
