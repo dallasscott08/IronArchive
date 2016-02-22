@@ -7,8 +7,7 @@ public abstract class WorkoutItem {
 	public abstract List<String> getAttributes();
 	
 	public abstract String getName();
-	public abstract void setId(int id);
+	public abstract void setName(String name);
 	public abstract int getId();
-	public abstract void setSet(int set);
-	public abstract int getSet();
+	public abstract void setId(int id);
 }
