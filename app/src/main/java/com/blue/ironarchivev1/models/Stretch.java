@@ -5,9 +5,9 @@ import java.util.List;
 
 public class Stretch extends WorkoutItem {
 
-	String name;
-	long time;
-	int hasDelay, id, routineId, set;
+	private String name;
+	private long time;
+	private int hasDelay, id, routineId, set;
 	
 	public Stretch() {
 		this.time = 0;
