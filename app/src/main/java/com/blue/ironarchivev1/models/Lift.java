@@ -7,8 +7,8 @@ import android.content.SharedPreferences;
 import android.text.TextUtils;
 
 public class Lift extends WorkoutItem {
-	String name;
-	int hasDelay, id, olympicBar, reps, routineId, set;
+	private String name;
+	private int hasDelay, id, olympicBar, reps, routineId, set;
 
 	long restTime, time;
 	double weight;
