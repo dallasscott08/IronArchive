@@ -3,9 +3,17 @@ package com.blue.ironarchivev1.models;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Routine extends WorkoutItem{
-	String name;
-	public int id;
+public class Routine{
+	private String linkedRoutines, name;
+	private int id;
+
+	public String getLinkedRoutines() {
+		return linkedRoutines;
+	}
+
+	public void setLinkedRoutines(String linkedRoutines) {
+		this.linkedRoutines = linkedRoutines;
+	}
 
 	public String getName() {
 		return name;
@@ -23,7 +31,6 @@ public class Routine extends WorkoutItem{
 		this.id = id;
 	}
 
-	@Override
 	public List<String> getAttributes() {
 		List<String> attributes = new ArrayList<String>();
 		attributes.add(String.valueOf(this.id));
