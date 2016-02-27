@@ -18,6 +18,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 	public static final String TABLE_ROUTINE = "Routine";
 
 	public static final String KEY_DELAY = "Delay";
+	public static final String KEY_LINKEDROUTINES = "LinkedRoutines";
 	public static final String KEY_NAME = "Name";
 	public static final String KEY_OLYMPICBAR = "OlympicBar";
 	public static final String KEY_TIME = "Time";
@@ -30,7 +31,8 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 	private static final int DATABASE_VERSION = 1;
 	private static final String CREATE_ROUTINE_TABLE =
 	        "CREATE TABLE IF NOT EXISTS " + TABLE_ROUTINE + " (" + KEY_ID + " INTEGER PRIMARY KEY"
-	        + ", " + KEY_NAME + " TEXT);";
+			+ KEY_NAME + " TEXT, "
+	        + KEY_LINKEDROUTINES + " TEXT);";
 	
 	private static final String CREATE_WARMUP_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_WARMUP + " (" + KEY_ID + " INTEGER PRIMARY KEY, "
 			+ KEY_NAME + " TEXT, "
