@@ -10,9 +10,9 @@ public class Lift extends WorkoutItem {
 	private String name;
 	private int hasDelay, id, olympicBar, reps, routineId, set;
 
-	long restTime, time;
-	double weight;
-	SharedPreferences settings;
+    private long restTime, time;
+    private double weight;
+    private SharedPreferences settings;
 
 	public Lift() {
 		this.hasDelay = 0;
