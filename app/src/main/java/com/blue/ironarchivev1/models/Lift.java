@@ -536,5 +536,25 @@ public class Lift extends WorkoutItem {
 		}
 		return weightsMessage;
 	}
-	
+
+	@Override
+	public int compareTo(WorkoutItem i) {
+		if(this.getTime() == ((Lift) i).getTime() &&
+				this.getHasDelay() == ((Lift)i).getHasDelay() &&
+				this.getReps() == ((Lift)i).getReps() &&
+				this.getWeight() == ((Lift)i).getWeight() &&
+				this.getUsesOlympicBar() == ((Lift)i).getUsesOlympicBar()){
+			return 0;
+		}
+		else if(this.getTime() != ((Lift) i).getTime() ||
+				this.getHasDelay() != ((Lift)i).getHasDelay() ||
+				this.getReps() != ((Lift)i).getReps() ||
+				this.getWeight() != ((Lift)i).getWeight() ||
+				this.getUsesOlympicBar() != ((Lift)i).getUsesOlympicBar()){
+			return -1;
+		}
+		else {
+			return 1;
+		}
+	}
 }

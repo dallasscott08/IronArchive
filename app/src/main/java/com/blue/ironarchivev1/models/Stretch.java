@@ -2,6 +2,7 @@ package com.blue.ironarchivev1.models;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.SimpleTimeZone;
 
 public class Stretch extends WorkoutItem {
 
@@ -70,6 +71,25 @@ public class Stretch extends WorkoutItem {
 		attributes.add(String.valueOf(this.time));
 		//attributes.add(String.valueOf(this.routineId));
 		return attributes;
+	}
+
+	@Override
+	public int compareTo(WorkoutItem s){
+		if(this.getTime() == ((Stretch) s).getTime() &&
+				this.getHasDelay() == ((Stretch)s).getHasDelay()) {
+			return 0;
+		}
+		else if(this.getTime() != ((Stretch) s).getTime() ||
+				this.getHasDelay() != ((Stretch)s).getHasDelay()) {
+			return -1;
+		}else{
+			return 1;
+		}
+	}
+
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		return super.clone();
 	}
 	
 }

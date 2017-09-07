@@ -81,5 +81,21 @@ public class Mobility extends WorkoutItem {
 		//attributes.add(String.valueOf(this.routineId));
 		return attributes;
 	}
-	
+
+	@Override
+	public int compareTo(WorkoutItem i) {
+		if(this.getTime() == ((Mobility) i).getTime() &&
+				this.getHasDelay() == ((Mobility)i).getHasDelay() &&
+				this.getReps() == ((Mobility)i).getReps()){
+			return 0;
+		}
+		else if(this.getTime() != ((Mobility) i).getTime() ||
+				this.getHasDelay() != ((Mobility)i).getHasDelay() ||
+				this.getReps() != ((Mobility)i).getReps()){
+			return -1;
+		}
+		else {
+			return 1;
+		}
+	}
 }

@@ -81,4 +81,21 @@ public class Warmup extends WorkoutItem {
 		//attributes.add(String.valueOf(this.routineId));
 		return attributes;
 	}
+
+	@Override
+	public int compareTo(WorkoutItem i) {
+		if(this.getTime() == ((Warmup) i).getTime() &&
+				this.getHasDelay() == ((Warmup)i).getHasDelay() &&
+				this.getReps() == ((Warmup)i).getReps()){
+			return 0;
+		}
+		else if(this.getTime() != ((Warmup) i).getTime() ||
+				this.getHasDelay() != ((Warmup)i).getHasDelay() ||
+				this.getReps() != ((Warmup)i).getReps()){
+			return -1;
+		}
+		else {
+			return 1;
+		}
+	}
 }
