@@ -2,6 +2,7 @@ package com.blue.ironarchivev1.db;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -10,6 +11,7 @@ import android.database.SQLException;
 
 import com.blue.ironarchivev1.models.Stretch;
 import com.blue.ironarchivev1.models.WorkoutItem;
+import com.blue.ironarchivev1.util.WorkoutItemUtils;
 
 public class StretchDAO extends DBManager implements WorkoutItemDAO{
 
@@ -114,6 +116,23 @@ public class StretchDAO extends DBManager implements WorkoutItemDAO{
         
         return mCursor.getCount()+1;
 	}
+
+	private List<WorkoutItem> getLikeItems(String itemName, int routineId) throws SQLException {
+		List<WorkoutItem> stretches = new ArrayList<WorkoutItem>();
+		Cursor mCursor = mDb.query(DatabaseHelper.TABLE_STRETCH
+				, allColumns
+				, DatabaseHelper.KEY_NAME + " =? AND " + DatabaseHelper.KEY_ROUTINEID + "=?"
+				, new String[] {itemName, String.valueOf(routineId)}
+				, null, null, null);
+
+		while (mCursor.moveToNext()) {
+			Stretch item = cursorToItem(mCursor);
+			stretches.add(item);
+		}
+
+		mCursor.close();
+		return stretches;
+	}
 	
 	public void decreaseListSetNumbersAfterModify(WorkoutItem i){
 		Cursor mCursor = mDb.query(true, DatabaseHelper.TABLE_STRETCH
@@ -155,4 +174,6 @@ public class StretchDAO extends DBManager implements WorkoutItemDAO{
 			}
         }
 	}
+
+	W
 }
