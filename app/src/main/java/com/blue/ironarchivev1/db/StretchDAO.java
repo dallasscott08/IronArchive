@@ -174,6 +174,5 @@ public class StretchDAO extends DBManager implements WorkoutItemDAO{
 			}
         }
 	}
-
-	W
+	
 }
