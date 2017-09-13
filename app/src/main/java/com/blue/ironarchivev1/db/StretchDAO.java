@@ -11,7 +11,7 @@ import android.database.SQLException;
 
 import com.blue.ironarchivev1.models.Stretch;
 import com.blue.ironarchivev1.models.WorkoutItem;
-import com.blue.ironarchivev1.util.WorkoutItemUtils;
+//import com.blue.ironarchivev1.util.WorkoutItemUtils;
 
 public class StretchDAO extends DBManager implements WorkoutItemDAO{
 
@@ -117,12 +117,20 @@ public class StretchDAO extends DBManager implements WorkoutItemDAO{
         return mCursor.getCount()+1;
 	}
 
-	private List<WorkoutItem> getLikeItems(String itemName, int routineId) throws SQLException {
+	private List<WorkoutItem> getDuplicates(Stretch oldValues, int routineId) throws SQLException {
 		List<WorkoutItem> stretches = new ArrayList<WorkoutItem>();
 		Cursor mCursor = mDb.query(DatabaseHelper.TABLE_STRETCH
 				, allColumns
-				, DatabaseHelper.KEY_NAME + " =? AND " + DatabaseHelper.KEY_ROUTINEID + "=?"
-				, new String[] {itemName, String.valueOf(routineId)}
+				, DatabaseHelper.KEY_NAME + " =? AND " +
+				  DatabaseHelper.KEY_TIME + " =? AND " +
+				  DatabaseHelper.KEY_DELAY + " =? AND " +
+				  DatabaseHelper.KEY_SETNUMBER + " =? AND " +
+				  DatabaseHelper.KEY_ROUTINEID + "=?"
+				, new String[] {oldValues.getName(),
+						String.valueOf(oldValues.getTime()),
+						String.valueOf(oldValues.getHasDelay()),
+						String.valueOf(oldValues.getSet()),
+						String.valueOf(routineId)}
 				, null, null, null);
 
 		while (mCursor.moveToNext()) {
@@ -133,7 +141,9 @@ public class StretchDAO extends DBManager implements WorkoutItemDAO{
 		mCursor.close();
 		return stretches;
 	}
-	
+
+	//UPDATE * SET(Matched Item VALUES (old Item From meory WHERE
+
 	public void decreaseListSetNumbersAfterModify(WorkoutItem i){
 		Cursor mCursor = mDb.query(true, DatabaseHelper.TABLE_STRETCH
 				, allColumns
