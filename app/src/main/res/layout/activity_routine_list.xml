@@ -8,13 +8,35 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight=".53"/>
-    
-	<Button
-    	android:id="@+id/addItem_button"
-        android:layout_width="match_parent"
-    	android:layout_height="wrap_content"
-    	android:text="@string/addRoutine_button"
-    	android:textColor="#FFFFFF"
-        android:background="#33b5e5"/>
-	
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal">
+
+		<Button
+			android:id="@+id/addItem_button"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/addRoutine_button"
+			android:textColor="#FFFFFF"
+			android:background="#33b5e5"
+			android:layout_weight="1"/>
+
+		<View android:layout_height="match_parent"
+			android:layout_width="1dp"
+			android:background="#FFFFFF"
+			android:gravity="center"/>
+
+		<Button
+			android:id="@+id/linkRoutines_button"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/linkRoutines_button"
+			android:textColor="#FFFFFF"
+			android:background="#33b5e5"
+			android:layout_weight="1"/>
+
+	</LinearLayout>
+
 </LinearLayout>
