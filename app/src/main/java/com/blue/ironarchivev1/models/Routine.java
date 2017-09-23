@@ -2,19 +2,17 @@ package com.blue.ironarchivev1.models;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class Routine {
 	private String name;
-	private int id;
-	private Set<Integer> linkedRoutines;
+	private int id, linkedRoutineId;
 
-	public Set<Integer> getLinkedRoutines() {
-		return linkedRoutines;
+	public int getLinkedRoutines() {
+		return linkedRoutineId;
 	}
 
-	public void setLinkedRoutines(Set<Integer> linkedRoutines) {
-		this.linkedRoutines = linkedRoutines;
+	public void setLinkedRoutines(int linkedRoutine) {
+		this.linkedRoutineId = linkedRoutine;
 	}
 
 	public String getName() {
@@ -48,10 +46,5 @@ public class Routine {
 	public int getSet() {
 		// TODO Auto-generated method stub
 		return 0;
-	}
-
-	@Override
-	protected Routine clone() throws CloneNotSupportedException{
-		return(Routine) super.clone();
 	}
 }
