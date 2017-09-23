@@ -18,7 +18,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 	public static final String TABLE_ROUTINE = "Routine";
 
 	public static final String KEY_DELAY = "Delay";
-	public static final String KEY_LINKEDROUTINEID = "LinkedRoutine";
+	public static final String KEY_LINKEDROUTINEID = "LinkedRoutine_ID";
 	public static final String KEY_NAME = "Name";
 	public static final String KEY_OLYMPICBAR = "OlympicBar";
 	public static final String KEY_TIME = "Time";
