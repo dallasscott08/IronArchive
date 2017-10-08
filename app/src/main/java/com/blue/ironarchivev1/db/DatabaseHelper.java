@@ -30,7 +30,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 	private static final String DATABASE_NAME = "myWorkout";
 	private static final int DATABASE_VERSION = 1;
 	private static final String CREATE_ROUTINE_TABLE =
-	        "CREATE TABLE IF NOT EXISTS " + TABLE_ROUTINE + " (" + KEY_ID + " INTEGER PRIMARY KEY"
+	        "CREATE TABLE IF NOT EXISTS " + TABLE_ROUTINE + " (" + KEY_ID + " INTEGER PRIMARY KEY, "
 			+ KEY_NAME + " TEXT, "
 	        + KEY_LINKEDROUTINEID + " INTEGER);";
 	

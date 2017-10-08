@@ -9,11 +9,10 @@ import android.database.Cursor;
 import android.database.SQLException;
 
 import com.blue.ironarchivev1.models.Routine;
-import com.blue.ironarchivev1.models.WorkoutItem;
 
-public class RoutineDAO extends DBManager implements WorkoutItemDAO{
+public class RoutineDAO extends DBManager {
 	
-	String[] allColumns = new String[] {DatabaseHelper.KEY_ID, DatabaseHelper.KEY_NAME};
+	String[] allColumns = new String[] {DatabaseHelper.KEY_ID, DatabaseHelper.KEY_NAME, DatabaseHelper.KEY_LINKEDROUTINEID};
 
 	public RoutineDAO(Context ctx){
 		super(ctx);
@@ -39,24 +38,25 @@ public class RoutineDAO extends DBManager implements WorkoutItemDAO{
         return routine;
 	}
 	
-	public boolean updateWorkoutItem(WorkoutItem rt) {
+	public boolean updateWorkoutItem(Routine rt) {
         ContentValues args = new ContentValues();
 
         args.put(DatabaseHelper.KEY_NAME, rt.getName());
+		args.put(DatabaseHelper.KEY_LINKEDROUTINEID, rt.getLinkedRoutineId());
 
-        return mDb.update(DatabaseHelper.TABLE_ROUTINE, args, DatabaseHelper.KEY_ID + "=" + ((Routine) rt).getId(), null) > 0;
+        return mDb.update(DatabaseHelper.TABLE_ROUTINE, args, DatabaseHelper.KEY_ID + "=" +  rt.getId(), null) > 0;
     }
 	
-	public boolean deleteWorkoutItem(WorkoutItem rt) {
-		mDb.delete(DatabaseHelper.TABLE_WARMUP, DatabaseHelper.KEY_ROUTINEID + "=" + ((Routine) rt).getId(), null);
-		mDb.delete(DatabaseHelper.TABLE_MOBILITY, DatabaseHelper.KEY_ROUTINEID + "=" + ((Routine) rt).getId(), null);
-		mDb.delete(DatabaseHelper.TABLE_STRETCH, DatabaseHelper.KEY_ROUTINEID + "=" + ((Routine) rt).getId(), null);
-		mDb.delete(DatabaseHelper.TABLE_LIFT, DatabaseHelper.KEY_ROUTINEID + "=" + ((Routine) rt).getId(), null);
-        return mDb.delete(DatabaseHelper.TABLE_ROUTINE, DatabaseHelper.KEY_ID + "=" + ((Routine) rt).getId(), null) > 0;
+	public boolean deleteWorkoutItem(Routine rt) {
+		mDb.delete(DatabaseHelper.TABLE_WARMUP, DatabaseHelper.KEY_ROUTINEID + "=" + rt.getId(), null);
+		mDb.delete(DatabaseHelper.TABLE_MOBILITY, DatabaseHelper.KEY_ROUTINEID + "=" + rt.getId(), null);
+		mDb.delete(DatabaseHelper.TABLE_STRETCH, DatabaseHelper.KEY_ROUTINEID + "=" + rt.getId(), null);
+		mDb.delete(DatabaseHelper.TABLE_LIFT, DatabaseHelper.KEY_ROUTINEID + "=" + rt.getId(), null);
+        return mDb.delete(DatabaseHelper.TABLE_ROUTINE, DatabaseHelper.KEY_ID + "=" + rt.getId(), null) > 0;
     }
 	
-	public List<WorkoutItem> getAllItems() {		
-    	List<WorkoutItem> routines = new ArrayList<WorkoutItem>();
+	public List<Routine> getAllItems() {
+    	List<Routine> routines = new ArrayList<Routine>();
     	
     	Cursor mCursor = mDb.query(DatabaseHelper.TABLE_ROUTINE, allColumns, null, null, null, null, null);
     	
@@ -77,6 +77,7 @@ public class RoutineDAO extends DBManager implements WorkoutItemDAO{
     	
 		routine.setId(cursor.getInt(0));
 		routine.setName(cursor.getString(1));
+		routine.setLinkedRoutineId(cursor.getInt(2));
         
         return routine;
     }
