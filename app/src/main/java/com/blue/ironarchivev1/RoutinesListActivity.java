@@ -22,25 +22,32 @@ import android.widget.TextView;
 import com.blue.ironarchivev1.db.RoutineDAO;
 import com.blue.ironarchivev1.dialogfragments.AddRoutineDialog;
 import com.blue.ironarchivev1.dialogfragments.UpdateRoutineDialog;
-import com.blue.ironarchivev1.models.WorkoutItem;
+import com.blue.ironarchivev1.models.Routine;
 
 public class RoutinesListActivity extends FragmentActivity {
 
 	private RoutineDAO routineDAO;
-	private List<WorkoutItem> routineList;
+	private List<Routine> routineList;
 	private int routineID;
+	private static int blue, white, transparent;
 	private RoutineArrayAdapter adapter;
 	private ListView routineListView;
+	private boolean linkingRoutines;
+	private Routine parentRoutine;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_routine_list);
 		Bundle extras = getIntent().getExtras();
-		
+		blue = getResources().getColor(R.color.blue);
+		white = getResources().getColor(R.color.white);
+		transparent = getResources().getColor(android.R.color.transparent);
+
 		routineID = extras.getInt("routineID", 1);
 		
 		routineDAO = new RoutineDAO(this);
+		parentRoutine = routineDAO.getWorkoutItem(routineID);
 		
 		if(!routineDAO.getWorkoutItem(routineID).getName().equals("Default")){
 			setTitle(getResources().getString(R.string.app_name) + "   -   " + routineDAO.getWorkoutItem(routineID).getName());
@@ -49,14 +56,30 @@ public class RoutinesListActivity extends FragmentActivity {
 		routineList = routineDAO.getAllItems();
 		
 		routineListView = (ListView) findViewById(R.id.routineList);
-		
+
 		Button addItem = (Button) findViewById(R.id.addItem_button);
 		addItem.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				DialogFragment mFragment = new AddRoutineDialog();
-				mFragment.show(getSupportFragmentManager(), "add_routine_item");			    
+				mFragment.show(getSupportFragmentManager(), "add_routine_item");
+			}
+		});
+
+		Button linkRoutines = (Button) findViewById(R.id.linkRoutines_button);
+		linkRoutines.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				if(linkingRoutines){
+					linkingRoutines = false;
+					clearListItemColors();
+				}
+				else {
+					linkingRoutines = true;
+					setLinkedColors(parentRoutine);
+				}
 			}
 		});
 		
@@ -87,8 +110,20 @@ public class RoutinesListActivity extends FragmentActivity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				routineID = routineList.get(position).getId();
-				setTitle(getResources().getString(R.string.app_name) + "   -   " + routineDAO.getWorkoutItem(routineID).getName());
+				if(linkingRoutines){
+					Routine selectedRoutine = routineList.get(position);
+
+					if(selectedRoutine.getId() != parentRoutine.getId()) {
+						changeRoutineColor(view, selectedRoutine);
+					}
+
+					routineDAO.updateWorkoutItem(selectedRoutine);
+				}
+				else {
+					routineID = routineList.get(position).getId();
+					parentRoutine = routineDAO.getWorkoutItem(routineID);
+					setTitle(getResources().getString(R.string.app_name) + "   -   " + routineDAO.getWorkoutItem(routineID).getName());
+				}
 			}
 			
 		});
@@ -111,19 +146,19 @@ public class RoutinesListActivity extends FragmentActivity {
 		adapter.notifyDataSetChanged();
 		routineListView.setAdapter(adapter);
 		if(updateRoutineID){
-			routineID = routineList.get(routineList.size()-1).getId();
-			setTitle(getResources().getString(R.string.app_name) + "   -   " + routineDAO.getWorkoutItem(routineID).getName());
+		routineID = routineList.get(routineList.size()-1).getId();
+		setTitle(getResources().getString(R.string.app_name) + "   -   " + routineDAO.getWorkoutItem(routineID).getName());
 		}
 	}
-	
+
 	public void setRoutineAfterEndOfListDelete(){
-		WorkoutItem lastItem = routineDAO.getAllItems().get(routineDAO.getAllItems().size()-1);
+		Routine lastItem = routineDAO.getAllItems().get(routineDAO.getAllItems().size()-1);
 		setTitle(getResources().getString(R.string.app_name) + "   -   " + lastItem.getName());
 		routineID = lastItem.getId();
 	}
 	
 	public void replaceRoutineAfterDelete(){
-		List<WorkoutItem> routineList = routineDAO.getAllItems();
+		List<Routine> routineList = routineDAO.getAllItems();
 		for(int i = 0; i < routineList.size(); i++){
 			if(routineList.get(i).getId() > routineID){
 				setTitle(getResources().getString(R.string.app_name) + "   -   " + routineList.get(i).getName());
@@ -132,21 +167,60 @@ public class RoutinesListActivity extends FragmentActivity {
 			}
 		}
 	}
-	
+
+	private void setLinkedColors(Routine parentRoutine){
+		for(int i = 0; i < routineListView.getCount();i++) {
+			if(routineList.get(i).getId() == parentRoutine.getId()){
+				toggleColor(routineListView.getChildAt(i), white, blue);
+			}
+			else if(routineList.get(i).getLinkedRoutineId() == parentRoutine.getLinkedRoutineId()) {
+				toggleColor(routineListView.getChildAt(i), white, blue);
+			}
+		}
+	}
+
+	private void clearListItemColors(){
+		for(int i = 0; i < routineListView.getCount();i++) {
+			toggleColor(routineListView.getChildAt(i), blue, transparent);
+		}
+	}
+
+	private void toggleColor(View v, int txtColor, int bgColor){
+		TextView text = (TextView) v.findViewById(R.id.routineItemTextView);
+		text.setBackgroundColor(bgColor);
+		text.setTextColor(txtColor);
+	}
+
+	private void changeRoutineColor(View view, Routine routine){
+		if(parentRoutine.getLinkedRoutineId() == 0){
+			toggleColor(view, white, blue);
+			routine.setLinkedRoutineId(parentRoutine.getId());
+		}
+		else if(routine.getLinkedRoutineId() == parentRoutine.getId() ||
+				routine.getLinkedRoutineId() == parentRoutine.getLinkedRoutineId()){
+			toggleColor(view, blue, transparent);
+			routine.setLinkedRoutineId(0);
+		}
+		else{
+			toggleColor(view, white, blue);
+			routine.setLinkedRoutineId(parentRoutine.getLinkedRoutineId());
+		}
+	}
+
 	@Override
 	protected void onResume() {
 		refreshList(false);
 		super.onResume();
 	}
 
-	private class RoutineArrayAdapter extends ArrayAdapter<WorkoutItem>{
+	private class RoutineArrayAdapter extends ArrayAdapter<Routine>{
 		
 		Activity context;
 	    int layoutResourceId; 
-	    List<WorkoutItem> routines;
+	    List<Routine> routines;
 	    
 		public RoutineArrayAdapter(Context context, int resource,
-				List<WorkoutItem> objects) {
+				List<Routine> objects) {
 			super(context, resource, objects);
 			this.context = (Activity) context;
 			this.layoutResourceId = resource;
