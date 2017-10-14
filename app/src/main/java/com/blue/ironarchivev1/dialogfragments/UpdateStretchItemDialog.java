@@ -19,14 +19,14 @@ import com.blue.ironarchivev1.ItemsListFragment;
 import com.blue.ironarchivev1.db.StretchDAO;
 import com.blue.ironarchivev1.models.Stretch;
 
-public class UpdateStretchItemDialog extends DialogFragment {
+public class UpdateStretchItemDialog extends DialogFragment{
 	
 	private Button mCommitButton, mDeleteButton;
 	private TextView iCurrentName, iCurrentTime;
 	private EditText iName, iTime;
 	private CheckBox iDelay;
 	private StretchDAO stretchDAO;
-	private Stretch mStretch;
+	private Stretch mStretch, initialStretch;
 	private int mID;
 	
 	UpdateStretchItemDialog newInstance(int num, int routineID){
@@ -46,6 +46,7 @@ public class UpdateStretchItemDialog extends DialogFragment {
 		stretchDAO = new StretchDAO(getActivity(), getArguments().getInt("routineId"));
 		mID = getArguments().getInt("id");
 		mStretch = stretchDAO.getWorkoutItem(mID);
+		initialStretch = new Stretch(mStretch);
 	}
 	
 	@Override
@@ -53,7 +54,6 @@ public class UpdateStretchItemDialog extends DialogFragment {
 			Bundle savedInstanceState) {
 				
 		View myStretchItem = inflater.inflate(R.layout.fragment_update_stretch_item, container, false);
-		final Stretch original = stretchDAO.getWorkoutItem(mID);
 				
 		mCommitButton = (Button) myStretchItem.findViewById(R.id.button_commit_stretch_update);
 		getDialog().setTitle("Update Stretch Item");
@@ -125,11 +125,17 @@ public class UpdateStretchItemDialog extends DialogFragment {
 				}
 				
 				stretchDAO.updateWorkoutItem(mStretch);
-				if(!(original.getName().equals(mStretch.getName()))){
+				if(!(initialStretch.getName().equals(mStretch.getName()))){
 					stretchDAO.increaseListSetNumbersAfterModify(mStretch);
-					stretchDAO.decreaseListSetNumbersAfterModify(original);
+					stretchDAO.decreaseListSetNumbersAfterModify(initialStretch);
 				}
-					
+				new Thread(new Runnable() {
+					@Override
+					public void run() {
+						stretchDAO.updateLinkedItems(initialStretch, mStretch);
+					}
+				}).start();
+
 				dismiss();
 			}
 		});
@@ -152,5 +158,5 @@ public class UpdateStretchItemDialog extends DialogFragment {
 		super.onDismiss(dialog);
 		((ItemsListFragment) getTargetFragment()).refreshList();
 	}
-	
+
 }

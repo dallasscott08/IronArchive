@@ -16,9 +16,19 @@ import com.blue.ironarchivev1.models.WorkoutItem;
 public class StretchDAO extends DBManager implements WorkoutItemDAO{
 
 	int routineId;
-	String[] allColumns = new String[] {DatabaseHelper.KEY_ID, DatabaseHelper.KEY_NAME, 
+	static String[] allColumns = new String[] {DatabaseHelper.KEY_ID, DatabaseHelper.KEY_NAME,
 			DatabaseHelper.KEY_TIME, DatabaseHelper.KEY_DELAY, 
 			DatabaseHelper.KEY_SETNUMBER, DatabaseHelper.KEY_ROUTINEID};
+	static String likeItemsQuery = "SELECT * FROM " + DatabaseHelper.TABLE_STRETCH +
+			" WHERE " + DatabaseHelper.TABLE_STRETCH + "." + DatabaseHelper.KEY_ID +
+			" IN (SELECT " + DatabaseHelper.TABLE_STRETCH + "." + DatabaseHelper.KEY_ID + " FROM " + DatabaseHelper.TABLE_STRETCH +
+			" INNER JOIN " + DatabaseHelper.TABLE_ROUTINE +
+			" ON " + DatabaseHelper.TABLE_STRETCH + "." + DatabaseHelper.KEY_ROUTINEID + "=" + DatabaseHelper.TABLE_ROUTINE + "." + DatabaseHelper.KEY_ID +
+			" WHERE " + DatabaseHelper.TABLE_STRETCH + "." + DatabaseHelper.KEY_ID + "!=? AND " +
+	DatabaseHelper.TABLE_STRETCH + "." + DatabaseHelper.KEY_NAME + "=? AND " +
+	DatabaseHelper.TABLE_STRETCH + "." + DatabaseHelper.KEY_TIME + "=? AND " +
+	DatabaseHelper.TABLE_STRETCH + "." + DatabaseHelper.KEY_DELAY + "=? AND " +
+	DatabaseHelper.TABLE_STRETCH + "." + DatabaseHelper.KEY_SETNUMBER + "=?)";
 
 	public StretchDAO(Context ctx, int rID){
 		super(ctx);
@@ -117,49 +127,36 @@ public class StretchDAO extends DBManager implements WorkoutItemDAO{
         return mCursor.getCount()+1;
 	}
 
-	private WorkoutItem getFirstDuplicate(Stretch oldValues) throws SQLException {
-		WorkoutItem item = null;
-		Cursor mCursor = mDb.rawQuery("SELECT * FROM " + DatabaseHelper.TABLE_STRETCH + " INNER JOIN " + DatabaseHelper.TABLE_ROUTINE +
-				" ON " + DatabaseHelper.TABLE_STRETCH + "." + DatabaseHelper.KEY_ROUTINEID + "=" + DatabaseHelper.TABLE_ROUTINE + "." + DatabaseHelper.KEY_ID +
-				" WHERE " + DatabaseHelper.TABLE_STRETCH + "." + DatabaseHelper.KEY_NAME + "=? AND " +
-						DatabaseHelper.TABLE_STRETCH + "." + DatabaseHelper.KEY_TIME + "=? AND " +
-						DatabaseHelper.TABLE_STRETCH + "." + DatabaseHelper.KEY_DELAY + "=? AND " +
-						DatabaseHelper.TABLE_STRETCH + "." + DatabaseHelper.KEY_SETNUMBER + "=? AND " +
-						DatabaseHelper.TABLE_ROUTINE + "." + DatabaseHelper.KEY_LINKEDROUTINEID + "=(" +
-						"SELECT " + DatabaseHelper.KEY_LINKEDROUTINEID + " FROM " + DatabaseHelper.TABLE_ROUTINE +
-						" WHERE " + DatabaseHelper.KEY_ID + "=?) " ,
-				new String[]{oldValues.getName(),
+	private List<WorkoutItem> getRoutineDuplicates(Stretch oldValues) throws SQLException {
+		List<WorkoutItem> items = new ArrayList<WorkoutItem>();
+		Cursor mCursor = mDb.rawQuery(likeItemsQuery,
+				new String[]{String.valueOf(oldValues.getId()),
+						oldValues.getName(),
 				String.valueOf(oldValues.getTime()),
 				String.valueOf(oldValues.getHasDelay()),
-				String.valueOf(oldValues.getSet()),
-				String.valueOf(oldValues.getId())});
+				String.valueOf(oldValues.getSet())});
 
-		if (mCursor.moveToFirst()) {
-			item = cursorToItem(mCursor);
+		if (mCursor != null && mCursor.getCount() >= 1) {
+			while (mCursor.moveToNext()) {
+				Stretch item = cursorToItem(mCursor);
+				items.add(item);
+			}
 		}
 
 		mCursor.close();
-		return item;
+		return items;
 	}
 
-	private int getLinkedRoutineId(int itemId){
-		Cursor mCursor = mDb.rawQuery("SELECT " + DatabaseHelper.KEY_LINKEDROUTINEID + " FROM " + DatabaseHelper.TABLE_ROUTINE +
-				" WHERE " + DatabaseHelper.KEY_ID + "=?", new String[]{String.valueOf(itemId)});
-		if (mCursor.moveToFirst()) {
-			if(mCursor.getInt(0) != 0)
-				return mCursor.getInt(0);
-		}
-		return 0;
-	}
-
-	//UPDATE * SET(Matched Item VALUES (old Item From meory WHERE
-	private void updateLinkedItems(Stretch oldItem, Stretch newItem)
+	public void updateLinkedItems(Stretch oldItem, Stretch newItem)
 	{
-		Stretch linkedStretch = (Stretch) getFirstDuplicate(oldItem);
-		Cursor mCursor = mDb.rawQuery("SELECT * FROM " + DatabaseHelper.TABLE_STRETCH + " INNER JOIN " + DatabaseHelper.TABLE_ROUTINE +
-				" ON " + DatabaseHelper.TABLE_STRETCH + "." + DatabaseHelper.KEY_ROUTINEID + "=" + DatabaseHelper.TABLE_ROUTINE + "." + DatabaseHelper.KEY_ID +
-				" WHERE " + DatabaseHelper.TABLE_STRETCH + "." + DatabaseHelper.KEY_ID + "=?", new String[]{null});
-		updateWorkoutItem(linkedStretch);
+		List<WorkoutItem> linkedStretches = getRoutineDuplicates(oldItem);
+		for(WorkoutItem stretch: linkedStretches){
+			((Stretch) stretch).setName(newItem.getName());
+			((Stretch) stretch).setHasDelay(newItem.getHasDelay());
+			((Stretch) stretch).setTime(newItem.getTime());
+			((Stretch) stretch).setSet(newItem.getSet());
+			updateWorkoutItem(stretch);
+		}
 	}
 	
 	public void decreaseListSetNumbersAfterModify(WorkoutItem i){
