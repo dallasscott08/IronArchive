@@ -28,7 +28,6 @@ public class RoutinesListActivity extends FragmentActivity {
 
 	private RoutineDAO routineDAO;
 	private List<Routine> routineList;
-	private int routineID;
 	private static int blue, white, transparent;
 	private RoutineArrayAdapter adapter;
 	private ListView routineListView;
@@ -44,13 +43,11 @@ public class RoutinesListActivity extends FragmentActivity {
 		white = getResources().getColor(R.color.white);
 		transparent = getResources().getColor(android.R.color.transparent);
 
-		routineID = extras.getInt("routineID", 1);
-		
 		routineDAO = new RoutineDAO(this);
-		parentRoutine = routineDAO.getWorkoutItem(routineID);
-		
-		if(!routineDAO.getWorkoutItem(routineID).getName().equals("Default")){
-			setTitle(getResources().getString(R.string.app_name) + "   -   " + routineDAO.getWorkoutItem(routineID).getName());
+		parentRoutine = routineDAO.getWorkoutItem(extras.getInt("routineID", 1));
+
+		if(!parentRoutine.getName().equals("Default")){
+			setTitle(getResources().getString(R.string.app_name) + "   -   " + parentRoutine.getName());
 		}
 		
 		routineList = routineDAO.getAllItems();
@@ -114,29 +111,22 @@ public class RoutinesListActivity extends FragmentActivity {
 					Routine selectedRoutine = routineList.get(position);
 
 					if(selectedRoutine.getId() != parentRoutine.getId()) {
-						changeRoutineColor(view, selectedRoutine);
+						changeRoutineColorAfterClick(view, selectedRoutine);
 					}
 
 					routineDAO.updateWorkoutItem(selectedRoutine);
+					routineList = routineDAO.getAllItems();
+					setLinkedColors(parentRoutine);
 				}
 				else {
-					routineID = routineList.get(position).getId();
-					parentRoutine = routineDAO.getWorkoutItem(routineID);
-					setTitle(getResources().getString(R.string.app_name) + "   -   " + routineDAO.getWorkoutItem(routineID).getName());
+					parentRoutine = routineDAO.getWorkoutItem(routineList.get(position).getId());
+					setTitle(getResources().getString(R.string.app_name) + "   -   " + parentRoutine.getName());
 				}
 			}
 			
 		});
 		
 		routineListView.setAdapter(adapter);
-	}
-	
-	@Override
-	public void finish() {
-		Intent data = new Intent();
-		data.putExtra("routineID", routineID);
-		setResult(RESULT_OK, data);
-		super.finish();
 	}
 
 	public void refreshList(boolean updateRoutineID){
@@ -146,34 +136,34 @@ public class RoutinesListActivity extends FragmentActivity {
 		adapter.notifyDataSetChanged();
 		routineListView.setAdapter(adapter);
 		if(updateRoutineID){
-		routineID = routineList.get(routineList.size()-1).getId();
-		setTitle(getResources().getString(R.string.app_name) + "   -   " + routineDAO.getWorkoutItem(routineID).getName());
+			parentRoutine = routineList.get(routineList.size()-1);
+			setTitle(getResources().getString(R.string.app_name) + "   -   " + parentRoutine.getName());
 		}
 	}
 
 	public void setRoutineAfterEndOfListDelete(){
 		Routine lastItem = routineDAO.getAllItems().get(routineDAO.getAllItems().size()-1);
 		setTitle(getResources().getString(R.string.app_name) + "   -   " + lastItem.getName());
-		routineID = lastItem.getId();
+		parentRoutine.setId(lastItem.getId());
 	}
 	
 	public void replaceRoutineAfterDelete(){
 		List<Routine> routineList = routineDAO.getAllItems();
 		for(int i = 0; i < routineList.size(); i++){
-			if(routineList.get(i).getId() > routineID){
+			if(routineList.get(i).getId() > parentRoutine.getId()){
 				setTitle(getResources().getString(R.string.app_name) + "   -   " + routineList.get(i).getName());
-				routineID = routineList.get(i).getId();
+				parentRoutine.setId(routineList.get(i).getId());
 				break;
 			}
 		}
 	}
 
 	private void setLinkedColors(Routine parentRoutine){
-		for(int i = 0; i < routineListView.getCount();i++) {
-			if(routineList.get(i).getId() == parentRoutine.getId()){
+		for(int i = 0; i < routineListView.getChildCount();i++) {
+			if (routineList.get(i).getId() == parentRoutine.getId()) {
 				toggleColor(routineListView.getChildAt(i), white, blue);
-			}
-			else if(routineList.get(i).getLinkedRoutineId() == parentRoutine.getLinkedRoutineId()) {
+			} else if (routineList.get(i).getLinkedRoutineId() == parentRoutine.getLinkedRoutineId() &&
+					routineList.get(i).getLinkedRoutineId() != 0) {
 				toggleColor(routineListView.getChildAt(i), white, blue);
 			}
 		}
@@ -191,10 +181,12 @@ public class RoutinesListActivity extends FragmentActivity {
 		text.setTextColor(txtColor);
 	}
 
-	private void changeRoutineColor(View view, Routine routine){
+	private void changeRoutineColorAfterClick(View view, Routine routine){
 		if(parentRoutine.getLinkedRoutineId() == 0){
 			toggleColor(view, white, blue);
 			routine.setLinkedRoutineId(parentRoutine.getId());
+			parentRoutine.setLinkedRoutineId(parentRoutine.getId());
+			routineDAO.updateWorkoutItem(parentRoutine);
 		}
 		else if(routine.getLinkedRoutineId() == parentRoutine.getId() ||
 				routine.getLinkedRoutineId() == parentRoutine.getLinkedRoutineId()){
@@ -211,6 +203,14 @@ public class RoutinesListActivity extends FragmentActivity {
 	protected void onResume() {
 		refreshList(false);
 		super.onResume();
+	}
+
+	@Override
+	public void finish() {
+		Intent data = new Intent();
+		data.putExtra("routineID", parentRoutine.getId());
+		setResult(RESULT_OK, data);
+		super.finish();
 	}
 
 	private class RoutineArrayAdapter extends ArrayAdapter<Routine>{

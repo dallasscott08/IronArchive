@@ -14,6 +14,15 @@ public class Stretch extends WorkoutItem {
 		this.time = 0;
 		this.hasDelay = 0;
 	}
+
+	public Stretch(Stretch original) {
+		this.name = original.getName();
+		this.time = original.getTime();
+		this.hasDelay = original.getHasDelay();
+		this.id = original.getId();
+		this.routineId = original.getRoutineId();
+		this.set = original.getSet();
+	}
 	
 	public String getName() {
 		return name;
@@ -85,11 +94,6 @@ public class Stretch extends WorkoutItem {
 		}else{
 			return 1;
 		}
-	}
-
-	@Override
-	public Object clone() throws CloneNotSupportedException {
-		return super.clone();
 	}
 	
 }
