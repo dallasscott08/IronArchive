@@ -14,6 +14,16 @@ public class Warmup extends WorkoutItem {
 		this.time = 0;
 		this.hasDelay = 0;
 	}
+
+	public Warmup(Warmup original) {
+		this.name = original.getName();
+		this.time = original.getTime();
+		this.hasDelay = original.getHasDelay();
+		this.id = original.getId();
+		this.routineId = original.getRoutineId();
+		this.reps = original.getReps();
+		this.set = original.getSet();
+	}
 	
 	public String getName() {
 		return name;

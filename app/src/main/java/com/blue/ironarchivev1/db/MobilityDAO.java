@@ -14,9 +14,20 @@ import com.blue.ironarchivev1.models.WorkoutItem;
 public class MobilityDAO extends DBManager implements WorkoutItemDAO{
 
 	int routineId = 1;
-	String[] allColumns = new String[] {DatabaseHelper.KEY_ID, DatabaseHelper.KEY_NAME,
+	static String[] allColumns = new String[] {DatabaseHelper.KEY_ID, DatabaseHelper.KEY_NAME,
 			DatabaseHelper.KEY_REPS, DatabaseHelper.KEY_TIME,
-			DatabaseHelper.KEY_DELAY, DatabaseHelper.KEY_SETNUMBER, DatabaseHelper.KEY_ROUTINEID};       
+			DatabaseHelper.KEY_DELAY, DatabaseHelper.KEY_SETNUMBER, DatabaseHelper.KEY_ROUTINEID};
+	static String likeItemsQuery = "SELECT * FROM " + DatabaseHelper.TABLE_MOBILITY +
+			" WHERE " + DatabaseHelper.TABLE_MOBILITY + "." + DatabaseHelper.KEY_ID +
+			" IN (SELECT " + DatabaseHelper.TABLE_MOBILITY + "." + DatabaseHelper.KEY_ID + " FROM " + DatabaseHelper.TABLE_MOBILITY +
+			" INNER JOIN " + DatabaseHelper.TABLE_ROUTINE +
+			" ON " + DatabaseHelper.TABLE_MOBILITY + "." + DatabaseHelper.KEY_ROUTINEID + "=" + DatabaseHelper.TABLE_ROUTINE + "." + DatabaseHelper.KEY_ID +
+			" WHERE " + DatabaseHelper.TABLE_MOBILITY + "." + DatabaseHelper.KEY_ID + "!=? AND " +
+			DatabaseHelper.TABLE_MOBILITY + "." + DatabaseHelper.KEY_NAME + "=? AND " +
+			DatabaseHelper.TABLE_MOBILITY + "." + DatabaseHelper.KEY_TIME + "=? AND " +
+			DatabaseHelper.TABLE_MOBILITY + "." + DatabaseHelper.KEY_DELAY + "=? AND " +
+			DatabaseHelper.TABLE_MOBILITY + "." + DatabaseHelper.KEY_REPS + "=? AND " +
+			DatabaseHelper.TABLE_MOBILITY + "." + DatabaseHelper.KEY_SETNUMBER + "=?)";
 
 	public MobilityDAO(Context ctx, int rID) {
 		super(ctx);
@@ -117,6 +128,40 @@ public class MobilityDAO extends DBManager implements WorkoutItemDAO{
 			, null, null, null);
         
         return mCursor.getCount()+1;
+	}
+
+	@Override
+	public List<WorkoutItem> getRoutineDuplicates(WorkoutItem oldValues) {
+		List<WorkoutItem> items = new ArrayList<WorkoutItem>();
+		Cursor mCursor = mDb.rawQuery(likeItemsQuery,
+				new String[]{String.valueOf(oldValues.getId()),
+						oldValues.getName(),
+						String.valueOf(((Mobility) oldValues).getTime()),
+						String.valueOf(((Mobility) oldValues).getHasDelay()),
+						String.valueOf(((Mobility) oldValues).getReps()),
+						String.valueOf(oldValues.getSet())});
+
+		if (mCursor != null && mCursor.getCount() >= 1) {
+			while (mCursor.moveToNext()) {
+				Mobility item = cursorToItem(mCursor);
+				items.add(item);
+			}
+		}
+
+		mCursor.close();
+		return items;
+	}
+
+	public void updateLinkedItems(WorkoutItem oldItem, WorkoutItem newItem)
+	{
+		List<WorkoutItem> linkedStretches = getRoutineDuplicates(oldItem);
+		for(WorkoutItem mobility: linkedStretches){
+			((Mobility) mobility).setReps(((Mobility) newItem).getReps());
+			((Mobility) mobility).setHasDelay(((Mobility) newItem).getHasDelay());
+			((Mobility) mobility).setTime(((Mobility) newItem).getTime());
+			mobility.setSet(newItem.getSet());
+			updateWorkoutItem(mobility);
+		}
 	}
 	
 	public void decreaseListSetNumbersAfterModify(WorkoutItem i){

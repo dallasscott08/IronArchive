@@ -26,7 +26,7 @@ public class UpdateWarmupItemDialog extends DialogFragment {
 	private EditText iName, iTime, iReps;
 	private CheckBox iDelay;
 	private WarmupDAO warmupDAO;
-	private Warmup mWarmup;
+	private Warmup mWarmup, initialWarmup;
 	private int mID;
 	
 	UpdateWarmupItemDialog newInstance(int num, int routineID){
@@ -46,6 +46,7 @@ public class UpdateWarmupItemDialog extends DialogFragment {
 		warmupDAO = new WarmupDAO(getActivity(), getArguments().getInt("routineId"));
 		mID = getArguments().getInt("id");
 		mWarmup = warmupDAO.getWorkoutItem(mID);
+		initialWarmup = new Warmup(mWarmup);
 	}
 	
 	@Override
@@ -53,7 +54,6 @@ public class UpdateWarmupItemDialog extends DialogFragment {
 			Bundle savedInstanceState) {
 				
 		View myWarmupItem = inflater.inflate(R.layout.fragment_update_mob_or_wa_item, container, false);
-		final Warmup original = warmupDAO.getWorkoutItem(mID);
 
 		mCommitButton = (Button) myWarmupItem.findViewById(R.id.button_commit_mob_or_wa_update);
 		getDialog().setTitle("Update Warm-Up Item");
@@ -154,10 +154,16 @@ public class UpdateWarmupItemDialog extends DialogFragment {
 					mWarmup.setHasDelay(0);
 				}
 				warmupDAO.updateWorkoutItem(mWarmup);
-				if(!(original.getName().equals(mWarmup.getName()))){
+				if(!(initialWarmup.getName().equals(mWarmup.getName()))){
 					warmupDAO.increaseListSetNumbersAfterModify(mWarmup);
-					warmupDAO.decreaseListSetNumbersAfterModify(original);
+					warmupDAO.decreaseListSetNumbersAfterModify(initialWarmup);
 				}
+				new Thread(new Runnable() {
+					@Override
+					public void run() {
+						warmupDAO.updateLinkedItems(initialWarmup, mWarmup);
+					}
+				}).start();
 				dismiss();
 			}
 		});

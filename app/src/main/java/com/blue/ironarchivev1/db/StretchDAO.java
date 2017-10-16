@@ -127,13 +127,13 @@ public class StretchDAO extends DBManager implements WorkoutItemDAO{
         return mCursor.getCount()+1;
 	}
 
-	private List<WorkoutItem> getRoutineDuplicates(Stretch oldValues) throws SQLException {
+	public List<WorkoutItem> getRoutineDuplicates(WorkoutItem oldValues) throws SQLException {
 		List<WorkoutItem> items = new ArrayList<WorkoutItem>();
 		Cursor mCursor = mDb.rawQuery(likeItemsQuery,
 				new String[]{String.valueOf(oldValues.getId()),
 						oldValues.getName(),
-				String.valueOf(oldValues.getTime()),
-				String.valueOf(oldValues.getHasDelay()),
+				String.valueOf(((Stretch) oldValues).getTime()),
+				String.valueOf(((Stretch) oldValues).getHasDelay()),
 				String.valueOf(oldValues.getSet())});
 
 		if (mCursor != null && mCursor.getCount() >= 1) {
@@ -147,14 +147,13 @@ public class StretchDAO extends DBManager implements WorkoutItemDAO{
 		return items;
 	}
 
-	public void updateLinkedItems(Stretch oldItem, Stretch newItem)
+	public void updateLinkedItems(WorkoutItem oldItem, WorkoutItem newItem)
 	{
 		List<WorkoutItem> linkedStretches = getRoutineDuplicates(oldItem);
 		for(WorkoutItem stretch: linkedStretches){
-			((Stretch) stretch).setName(newItem.getName());
-			((Stretch) stretch).setHasDelay(newItem.getHasDelay());
-			((Stretch) stretch).setTime(newItem.getTime());
-			((Stretch) stretch).setSet(newItem.getSet());
+			((Stretch) stretch).setHasDelay(((Stretch) newItem).getHasDelay());
+			((Stretch) stretch).setTime(((Stretch) newItem).getTime());
+			stretch.setSet(newItem.getSet());
 			updateWorkoutItem(stretch);
 		}
 	}

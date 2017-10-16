@@ -26,7 +26,7 @@ public class UpdateMobilityItemDialog extends DialogFragment {
 	private EditText iName, iTime, iReps;
 	private CheckBox iDelay;
 	private MobilityDAO mobilityDAO;
-	private Mobility mMobility;
+	private Mobility mMobility, initialMobility;
 	private int mID;
 
 	UpdateMobilityItemDialog newInstance(int num, int routineID){
@@ -46,6 +46,7 @@ public class UpdateMobilityItemDialog extends DialogFragment {
 		mobilityDAO = new MobilityDAO(getActivity(), getArguments().getInt("routineId"));
 		mID = getArguments().getInt("id");
 		mMobility = mobilityDAO.getWorkoutItem(mID);
+		initialMobility = new Mobility(mMobility);
 	}
 	
 	@Override
@@ -53,7 +54,6 @@ public class UpdateMobilityItemDialog extends DialogFragment {
 			Bundle savedInstanceState) {
 		
 		View myMobilityItem = inflater.inflate(R.layout.fragment_update_mob_or_wa_item, container, false);
-		final Mobility original = mobilityDAO.getWorkoutItem(mID);
 
 		mCommitButton = (Button) myMobilityItem.findViewById(R.id.button_commit_mob_or_wa_update);
 		getDialog().setTitle("Update Mobility Item");
@@ -164,10 +164,16 @@ public class UpdateMobilityItemDialog extends DialogFragment {
 					mMobility.setHasDelay(0);
 				}
 				mobilityDAO.updateWorkoutItem(mMobility);
-				if(!(original.getName().equals(mMobility.getName()))){
+				if(!(initialMobility.getName().equals(mMobility.getName()))){
 					mobilityDAO.increaseListSetNumbersAfterModify(mMobility);
-					mobilityDAO.decreaseListSetNumbersAfterModify(original);
+					mobilityDAO.decreaseListSetNumbersAfterModify(initialMobility);
 				}
+				new Thread(new Runnable() {
+					@Override
+					public void run() {
+						mobilityDAO.updateLinkedItems(initialMobility, mMobility);
+					}
+				}).start();
 				dismiss();
 			}
 		});

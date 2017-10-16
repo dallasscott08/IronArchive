@@ -28,7 +28,7 @@ public class UpdateLiftItemDialog extends DialogFragment {
 	private EditText iName, iReps, iRestTime, iTime, iWeight;
 	private CheckBox iDelay;
 	private LiftDAO liftDAO;
-	private Lift mLift;
+	private Lift mLift, initialLift;
 	private int mID;
 	private SharedPreferences settings;
 
@@ -50,6 +50,7 @@ public class UpdateLiftItemDialog extends DialogFragment {
 		liftDAO = new LiftDAO(getActivity(), getArguments().getInt("routineId"));
 		mID = getArguments().getInt("id");
 		mLift = liftDAO.getWorkoutItem(mID);
+		initialLift = new Lift(mLift);
 	}
 	
 	@Override
@@ -57,7 +58,6 @@ public class UpdateLiftItemDialog extends DialogFragment {
 			Bundle savedInstanceState) {
 		
 		View myLiftItem = inflater.inflate(R.layout.fragment_update_lift_item, container, false);
-		final Lift original = liftDAO.getWorkoutItem(mID);
 
 		mCommitButton = (Button) myLiftItem.findViewById(R.id.button_commit_lift_update);
 		getDialog().setTitle("Update Lift Item");
@@ -220,10 +220,16 @@ public class UpdateLiftItemDialog extends DialogFragment {
 					mLift.setHasDelay(0);
 				}
 				liftDAO.updateWorkoutItem(mLift);
-				if(!(original.getName().equals(mLift.getName()))){
+				if(!(initialLift.getName().equals(mLift.getName()))){
 					liftDAO.increaseListSetNumbersAfterModify(mLift);
-					liftDAO.decreaseListSetNumbersAfterModify(original);
+					liftDAO.decreaseListSetNumbersAfterModify(initialLift);
 				}
+				new Thread(new Runnable() {
+					@Override
+					public void run() {
+						liftDAO.updateLinkedItems(initialLift, mLift);
+					}
+				}).start();
 				
 				dismiss();
 			}

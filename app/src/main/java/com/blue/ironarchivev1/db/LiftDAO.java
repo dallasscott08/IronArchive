@@ -17,11 +17,25 @@ import com.blue.ironarchivev1.models.WorkoutItem;
 public class LiftDAO extends DBManager implements WorkoutItemDAO{
 
 	int routineId = 1;
-	String[] allColumns = new String[] {DatabaseHelper.KEY_ID, 
+	static String[] allColumns = new String[] {DatabaseHelper.KEY_ID,
 			DatabaseHelper.KEY_NAME, DatabaseHelper.KEY_WEIGHT,
 			DatabaseHelper.KEY_REPS, DatabaseHelper.KEY_TIME, 
 			DatabaseHelper.KEY_RESTTIME, DatabaseHelper.KEY_DELAY, 
 			DatabaseHelper.KEY_SETNUMBER, DatabaseHelper.KEY_OLYMPICBAR, DatabaseHelper.KEY_ROUTINEID};
+	static String likeItemsQuery = "SELECT * FROM " + DatabaseHelper.TABLE_LIFT +
+			" WHERE " + DatabaseHelper.TABLE_LIFT + "." + DatabaseHelper.KEY_ID +
+			" IN (SELECT " + DatabaseHelper.TABLE_LIFT + "." + DatabaseHelper.KEY_ID + " FROM " + DatabaseHelper.TABLE_LIFT +
+			" INNER JOIN " + DatabaseHelper.TABLE_ROUTINE +
+			" ON " + DatabaseHelper.TABLE_LIFT + "." + DatabaseHelper.KEY_ROUTINEID + "=" + DatabaseHelper.TABLE_ROUTINE + "." + DatabaseHelper.KEY_ID +
+			" WHERE " + DatabaseHelper.TABLE_LIFT + "." + DatabaseHelper.KEY_ID + "!=? AND " +
+			DatabaseHelper.TABLE_LIFT + "." + DatabaseHelper.KEY_NAME + "=? AND " +
+			DatabaseHelper.TABLE_LIFT + "." + DatabaseHelper.KEY_TIME + "=? AND " +
+			DatabaseHelper.TABLE_LIFT + "." + DatabaseHelper.KEY_DELAY + "=? AND " +
+			DatabaseHelper.TABLE_LIFT + "." + DatabaseHelper.KEY_REPS + "=? AND " +
+			DatabaseHelper.TABLE_LIFT + "." + DatabaseHelper.KEY_WEIGHT + "=? AND " +
+			DatabaseHelper.TABLE_LIFT + "." + DatabaseHelper.KEY_RESTTIME + "=? AND " +
+			DatabaseHelper.TABLE_LIFT + "." + DatabaseHelper.KEY_OLYMPICBAR + "=? AND " +
+			DatabaseHelper.TABLE_LIFT + "." + DatabaseHelper.KEY_SETNUMBER + "=?)";
 	SharedPreferences settings;
 	String system;
 	
@@ -160,6 +174,46 @@ public class LiftDAO extends DBManager implements WorkoutItemDAO{
 			, null, null, null);
         
         return mCursor.getCount()+1;
+	}
+
+	@Override
+	public List<WorkoutItem> getRoutineDuplicates(WorkoutItem oldValues) {
+		List<WorkoutItem> items = new ArrayList<WorkoutItem>();
+		Cursor mCursor = mDb.rawQuery(likeItemsQuery,
+				new String[]{String.valueOf(oldValues.getId()),
+						oldValues.getName(),
+						String.valueOf(((Lift) oldValues).getTime()),
+						String.valueOf(((Lift) oldValues).getHasDelay()),
+						String.valueOf(((Lift) oldValues).getReps()),
+						String.valueOf(((Lift) oldValues).getWeight()),
+						String.valueOf(((Lift) oldValues).getRestTime()),
+						String.valueOf(((Lift) oldValues).getUsesOlympicBar()),
+						String.valueOf((oldValues).getSet())});
+
+		if (mCursor != null && mCursor.getCount() >= 1) {
+			while (mCursor.moveToNext()) {
+				Lift item = cursorToItem(mCursor);
+				items.add(item);
+			}
+		}
+
+		mCursor.close();
+		return items;
+	}
+
+	public void updateLinkedItems(WorkoutItem oldItem, WorkoutItem newItem)
+	{
+		List<WorkoutItem> linkedStretches = getRoutineDuplicates(oldItem);
+		for(WorkoutItem lift: linkedStretches){
+			((Lift) lift).setWeight(((Lift) newItem).getWeight());
+			((Lift) lift).setReps(((Lift) newItem).getReps());
+			((Lift) lift).setHasDelay(((Lift) newItem).getHasDelay());
+			((Lift) lift).setTime(((Lift) newItem).getTime());
+			((Lift) lift).setRestTime(((Lift) newItem).getRestTime());
+			((Lift) lift).setUsesOlympicBar(((Lift) newItem).getUsesOlympicBar());
+			lift.setSet(newItem.getSet());
+			updateWorkoutItem(lift);
+		}
 	}
 	
 	public void decreaseListSetNumbersAfterModify(WorkoutItem i){

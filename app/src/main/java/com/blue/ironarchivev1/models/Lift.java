@@ -9,7 +9,6 @@ import android.text.TextUtils;
 public class Lift extends WorkoutItem {
 	private String name;
 	private int hasDelay, id, olympicBar, reps, routineId, set;
-
     private long restTime, time;
     private double weight;
     private SharedPreferences settings;
@@ -21,6 +20,19 @@ public class Lift extends WorkoutItem {
 		this.restTime = 0;
 		this.time = 0;
 		this.weight = 0.0;
+	}
+
+	public Lift(Lift original) {
+		this.name = original.getName();
+		this.time = original.getTime();
+		this.hasDelay = original.getHasDelay();
+		this.id = original.getId();
+		this.routineId = original.getRoutineId();
+		this.reps = original.getReps();
+		this.set = original.getSet();
+		this.olympicBar = original.getUsesOlympicBar();
+		this.restTime = original.getRestTime();
+		this.weight = original.getWeight();
 	}
 
 	public int getId() {
