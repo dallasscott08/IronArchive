@@ -27,7 +27,9 @@ public class WarmupDAO extends DBManager implements WorkoutItemDAO{
 			DatabaseHelper.TABLE_WARMUP + "." + DatabaseHelper.KEY_TIME + "=? AND " +
 			DatabaseHelper.TABLE_WARMUP + "." + DatabaseHelper.KEY_DELAY + "=? AND " +
 			DatabaseHelper.TABLE_WARMUP + "." + DatabaseHelper.KEY_REPS + "=? AND " +
-			DatabaseHelper.TABLE_WARMUP + "." + DatabaseHelper.KEY_SETNUMBER + "=?)";
+			DatabaseHelper.TABLE_WARMUP + "." + DatabaseHelper.KEY_SETNUMBER + "=? AND " +
+			DatabaseHelper.TABLE_ROUTINE + "." + DatabaseHelper.KEY_LINKEDROUTINEID	+
+			"=(SELECT "+ DatabaseHelper.KEY_LINKEDROUTINEID + " FROM " + DatabaseHelper.TABLE_ROUTINE + " WHERE "+ DatabaseHelper.KEY_ID +"=?))";
 
 	public WarmupDAO(Context ctx, int rID){
 		super(ctx);
@@ -139,7 +141,8 @@ public class WarmupDAO extends DBManager implements WorkoutItemDAO{
 						String.valueOf(((Warmup) oldValues).getTime()),
 						String.valueOf(((Warmup) oldValues).getHasDelay()),
 						String.valueOf(((Warmup) oldValues).getReps()),
-						String.valueOf(oldValues.getSet())});
+						String.valueOf(oldValues.getSet()),
+						String.valueOf(oldValues.getRoutineId())});
 
 		if (mCursor != null && mCursor.getCount() >= 1) {
 			while (mCursor.moveToNext()) {
